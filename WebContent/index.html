@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hello world</title>
+<link rel="stylesheet" type="text/css" href="style/index.css">
+</head>
+<body>
+	<div class="container">
+		<h1>欢迎来到德莱联盟</h1>
+		<div class="block">
+			<span>用户名：</span> <input type="text" v-model="username">
+		</div>
+		<div class="block">
+			<span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span> <input type="password" v-model="password">
+		</div>
+		<div class="block refund">
+			<a href="#">忘记密码？</a> <a href="#">注册账户</a>
+		</div>
+		<div class="btn" @click="submitForm">登&nbsp;&nbsp;陆</div>
+	</div>
+	<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:'.container',
+			data:{
+				username:'',
+				password:''
+			},
+			methods:{
+				submitForm:function(){
+					var username = this.username,
+						password = this.password;
+					$.ajax({
+						type:"post",
+						url:"Login",
+						data:{
+							username:username,
+							password:password
+						},
+						success:function(data){
+							if(data == 1){
+								alert("欢迎来到德莱联盟")
+							}
+						}
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>
